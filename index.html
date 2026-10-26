@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- External Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Tailwind Configuration with Adaptive Palette -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: 'var(--brand-50)',
+                            100: 'var(--brand-100)',
+                            500: 'var(--brand-500)',
+                            600: 'var(--brand-600)',
+                            700: 'var(--brand-700)',
+                        },
+                        darkbg: '#0b1120',
+                        darkcard: '#151e32',
+                        darkborder: '#23304d'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<canvas id="mouse-trail"></canvas>
+
+<body
+    class="bg-slate-50 dark:bg-darkbg text-slate-800 dark:text-slate-100 min-h-screen flex flex-col transition-colors duration-300">
+
+    <!-- ================= NAVBAR ================= -->
+    <header
+        class="sticky top-0 z-40 w-full bg-white/80 dark:bg-darkbg/80 backdrop-blur-md border-b border-slate-200 dark:border-darkborder transition-colors">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+
+                <!-- Logo -->
+                <a href="#home" class="flex items-center gap-2 text-lg font-bold text-slate-900 dark:text-white">
+                    <div
+                        class="w-8 h-8 rounded-lg bg-brand-600 flex items-center justify-center text-white shadow-md shadow-brand-500/20">
+                        <i data-lucide="graduation-cap" class="w-5 h-5"></i>
+                    </div>
+                    <span>My'<span class="text-brand-500">Portfolio</span></span>
+                </a>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex items-center gap-8 text-sm font-medium">
+                    <a href="#home" class="nav-link">Home</a>
+                    <a href="#about" class="nav-link">About Me</a>
+                    <a href="#skills" class="nav-link">Skills</a>
+                    <a href="#activities" class="nav-link">Activities</a>
+                    <a href="#contact" class="nav-link">Contact</a>
+                </nav>
+
+                <!-- Right Controls -->
+                <div class="flex items-center gap-3">
+                    <button id="themeToggleBtn" onclick="toggleTheme()"
+                        class="p-2 rounded-xl bg-slate-100 dark:bg-darkcard text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-800 transition-all border border-slate-200 dark:border-darkborder"
+                        title="Toggle Theme">
+                        <i id="themeIcon" data-lucide="moon" class="w-5 h-5"></i>
+                    </button>
+                    <button id="mobileMenuBtn" onclick="toggleMobileMenu()"
+                        class="md:hidden p-2 rounded-xl bg-slate-100 dark:bg-darkcard text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-darkborder">
+                        <i data-lucide="menu" class="w-5 h-5"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Drawer Navigation -->
+        <div id="mobileMenu"
+            class="hidden md:hidden border-b border-slate-200 dark:border-darkborder bg-white dark:bg-darkcard px-4 pt-2 pb-4 space-y-2 shadow-xl">
+            <a href="#home" onclick="toggleMobileMenu()"
+                class="block py-2 text-slate-600 dark:text-slate-300 hover:text-brand-500 font-medium">Home</a>
+            <a href="#about" onclick="toggleMobileMenu()"
+                class="block py-2 text-slate-600 dark:text-slate-300 hover:text-brand-500 font-medium">About Me</a>
+            <a href="#skills" onclick="toggleMobileMenu()"
+                class="block py-2 text-slate-600 dark:text-slate-300 hover:text-brand-500 font-medium">Skills</a>
+            <a href="#activities" onclick="toggleMobileMenu()"
+                class="block py-2 text-slate-600 dark:text-slate-300 hover:text-brand-500 font-medium">Activities</a>
+            <a href="#contact" onclick="toggleMobileMenu()"
+                class="block py-2 text-slate-600 dark:text-slate-300 hover:text-brand-500 font-medium">Contact</a>
+        </div>
+    </header>
+
+    <!-- ================= HERO SECTION ================= -->
+    <section id="home" class="pt-20 pb-16 md:pt-32 md:pb-24 relative overflow-hidden">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-12">
+
+                <!-- Left Hero Text -->
+                <div class="flex-1 text-center md:text-left space-y-6">
+                    <div
+                        class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white dark:bg-darkcard border border-brand-500/30 text-brand-500 text-xs font-semibold uppercase tracking-wider shadow-sm">
+                        <i data-lucide="book-open" class="w-4 h-4"></i>
+                        <span>Academic Activity Portfolio</span>
+                    </div>
+
+                    <h1
+                        class="text-4xl sm:text-5xl md:text-6xl font-extrabold text-slate-900 dark:text-white leading-tight">
+                        Hello, I'm <span class="text-brand-500">Mark Joshua Flor Marin</span>
+                    </h1>
+
+                    <p class="text-lg sm:text-xl font-bold text-slate-800 dark:text-slate-200">
+                        BS Information Technology Student
+                    </p>
+
+                    <p class="text-slate-600 dark:text-slate-400 text-base sm:text-lg max-w-2xl leading-relaxed">
+                        Welcome to my official academic system portfolio! This system serves as a consolidated
+                        repository for all my coding tasks, laboratory exercises from Midterm to Final Term using HTML,
+                        CSS, and JavaScript.
+                    </p>
+
+                    <div class="flex flex-wrap items-center justify-center md:justify-start gap-4 pt-2">
+                        <a href="#activities"
+                            class="px-7 py-3.5 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-medium transition-all shadow-lg shadow-brand-500/25 flex items-center gap-2 transform hover:-translate-y-0.5">
+                            <i data-lucide="folder-git-2" class="w-4 h-4"></i> View Activities
+                        </a>
+                        <a href="#about"
+                            class="px-7 py-3.5 rounded-xl border border-slate-300 dark:border-darkborder text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-darkcard font-medium transition-all">
+                            About Me
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Full Fitted Profile Picture Box -->
+                <div class="relative flex-shrink-0">
+                    <div class="absolute -inset-1 rounded-3xl blur-md opacity-75 glowing-box bg-brand-500"></div>
+                    <div
+                        class="relative w-64 h-64 sm:w-72 sm:h-72 rounded-3xl bg-white dark:bg-darkcard p-1.5 shadow-2xl overflow-hidden">
+                        <div class="w-full h-full rounded-[22px] overflow-hidden flex items-center justify-center">
+                            <img src="profile.png" alt="Mark Joshua Flor Marin"
+                                class="w-full h-full object-cover rounded-[22px]">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= ABOUT ME ================= -->
+    <section id="about"
+        class="py-20 bg-slate-100/60 dark:bg-darkcard/40 border-y border-slate-200 dark:border-darkborder">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-14">
+                <p class="text-xs font-semibold text-brand-500 uppercase tracking-widest">Introduction</p>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white mt-1">About Me</h2>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                <div
+                    class="lg:col-span-7 bg-white dark:bg-darkcard border border-slate-200 dark:border-darkborder rounded-3xl p-8 sm:p-10 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-3 text-brand-500 font-bold text-xl mb-6">
+                            <div class="p-2.5 rounded-xl bg-brand-50">
+                                <i data-lucide="graduation-cap" class="w-6 h-6 text-brand-500"></i>
+                            </div>
+                            <h3>Passionate Student & Learner</h3>
+                        </div>
+                        <p class="text-slate-600 dark:text-slate-300 text-base sm:text-lg leading-relaxed mb-5">
+                            I am currently taking up a degree in <strong>Information Technology</strong>. Throughout
+                            this course term, I have been continuously building web application projects and fulfilling
+                            laboratory requirements to sharpen my technical aptitude.
+                        </p>
+                        <p class="text-slate-600 dark:text-slate-300 text-base sm:text-lg leading-relaxed mb-8">
+                            This system serves as my cumulative showcase for the subject, organizing all laboratory
+                            activities, performance tasks, and final requirements into one centralized interactive hub.
+                        </p>
+                    </div>
+
+                    <div
+                        class="grid grid-cols-3 gap-4 pt-6 border-t border-slate-100 dark:border-darkborder text-center">
+                        <div
+                            class="bg-slate-50 dark:bg-darkbg/60 p-4 rounded-2xl border border-slate-100 dark:border-darkborder/50">
+                            <span id="statTotal"
+                                class="block text-2xl sm:text-3xl font-extrabold text-brand-500">14</span>
+                            <span class="text-xs text-slate-500 dark:text-slate-400 font-medium mt-1 block">Activities
+                                Compiled</span>
+                        </div>
+                        <div
+                            class="bg-slate-50 dark:bg-darkbg/60 p-4 rounded-2xl border border-slate-100 dark:border-darkborder/50">
+                            <span class="block text-2xl sm:text-3xl font-extrabold text-brand-500">2</span>
+                            <span class="text-xs text-slate-500 dark:text-slate-400 font-medium mt-1 block">Academic
+                                Terms</span>
+                        </div>
+                        <div
+                            class="bg-slate-50 dark:bg-darkbg/60 p-4 rounded-2xl border border-slate-100 dark:border-darkborder/50">
+                            <span class="block text-2xl sm:text-3xl font-extrabold text-emerald-500">100%</span>
+                            <span class="text-xs text-slate-500 dark:text-slate-400 font-medium mt-1 block">Submission
+                                Rate</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-5 space-y-4">
+                    <div
+                        class="bg-white dark:bg-darkcard border border-slate-200 dark:border-darkborder rounded-2xl p-5 shadow-sm flex items-center gap-4">
+                        <div
+                            class="w-12 h-12 rounded-xl bg-brand-50 text-brand-500 flex items-center justify-center flex-shrink-0">
+                            <i data-lucide="graduation-cap" class="w-6 h-6"></i>
+                        </div>
+                        <div>
+                            <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Course & Year Level
+                            </p>
+                            <p class="font-bold text-slate-900 dark:text-white text-base">BSIT / 3rd Year Student</p>
+                        </div>
+                    </div>
+
+                    <div
+                        class="bg-white dark:bg-darkcard border border-slate-200 dark:border-darkborder rounded-2xl p-5 shadow-sm flex items-center gap-4">
+                        <div
+                            class="w-12 h-12 rounded-xl bg-purple-500/10 text-purple-500 flex items-center justify-center flex-shrink-0">
+                            <i data-lucide="book-open" class="w-6 h-6"></i>
+                        </div>
+                        <div>
+                            <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Subject</p>
+                            <p class="font-bold text-slate-900 dark:text-white text-base">Web Development</p>
+                        </div>
+                    </div>
+
+                    <div
+                        class="bg-white dark:bg-darkcard border border-slate-200 dark:border-darkborder rounded-2xl p-5 shadow-sm flex items-center gap-4">
+                        <div
+                            class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-500 flex items-center justify-center flex-shrink-0">
+                            <i data-lucide="map-pin" class="w-6 h-6"></i>
+                        </div>
+                        <div>
+                            <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Location</p>
+                            <p class="font-bold text-slate-900 dark:text-white text-xs sm:text-sm">0711 Pearl St. Villa
+                                Consuelo Subdivision Abangan Sur Marilao Bulacan</p>
+                        </div>
+                    </div>
+
+                    <div
+                        class="bg-white dark:bg-darkcard border border-slate-200 dark:border-darkborder rounded-2xl p-5 shadow-sm flex items-center gap-4">
+                        <div
+                            class="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-500 flex items-center justify-center flex-shrink-0">
+                            <i data-lucide="heart" class="w-6 h-6"></i>
+                        </div>
+                        <div>
+                            <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Interests & Hobbies
+                            </p>
+                            <p class="font-bold text-slate-900 dark:text-white text-base">UI Design, Coding, Gaming,
+                                Music</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= SKILLS ================= -->
+    <section id="skills" class="py-20">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-14">
+                <p class="text-xs font-semibold text-brand-500 uppercase tracking-widest">Competencies</p>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white mt-1">Student Skills</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div
+                    class="bg-white dark:bg-darkcard border border-slate-200 dark:border-darkborder rounded-3xl p-8 shadow-sm">
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
+                        <i data-lucide="laptop" class="w-6 h-6 text-brand-500"></i> Coursework & Technical Skills
+                    </h3>
+                    <div class="space-y-6">
+                        <div>
+                            <div class="flex justify-between text-sm font-semibold mb-2">
+                                <span class="text-slate-700 dark:text-slate-300">Communication</span>
+                                <span class="text-brand-500">85%</span>
+                            </div>
+                            <div class="w-full h-3 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden p-0.5">
+                                <div class="h-full bg-brand-500 rounded-full" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-sm font-semibold mb-2">
+                                <span class="text-slate-700 dark:text-slate-300">Problem Solving</span>
+                                <span class="text-brand-500">75%</span>
+                            </div>
+                            <div class="w-full h-3 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden p-0.5">
+                                <div class="h-full bg-brand-500 rounded-full" style="width: 75%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-sm font-semibold mb-2">
+                                <span class="text-slate-700 dark:text-slate-300">Time Management</span>
+                                <span class="text-brand-500">80%</span>
+                            </div>
+                            <div class="w-full h-3 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden p-0.5">
+                                <div class="h-full bg-brand-500 rounded-full" style="width: 80%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-sm font-semibold mb-2">
+                                <span class="text-slate-700 dark:text-slate-300">Teamwork</span>
+                                <span class="text-brand-500">90%</span>
+                            </div>
+                            <div class="w-full h-3 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden p-0.5">
+                                <div class="h-full bg-brand-500 rounded-full" style="width: 90%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div
+                    class="bg-white dark:bg-darkcard border border-slate-200 dark:border-darkborder rounded-3xl p-8 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
+                            <i data-lucide="check-circle-2" class="w-6 h-6 text-brand-500"></i> Academic & Lab
+                            Competencies
+                        </h3>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div
+                                class="p-4 bg-slate-50 dark:bg-darkbg/60 border border-slate-200 dark:border-darkborder/60 rounded-2xl text-center">
+                                <i data-lucide="clock" class="w-6 h-6 mx-auto text-brand-500 mb-2"></i>
+                                <span class="text-xs font-semibold text-slate-700 dark:text-slate-300">Time
+                                    Management</span>
+                            </div>
+                            <div
+                                class="p-4 bg-slate-50 dark:bg-darkbg/60 border border-slate-200 dark:border-darkborder/60 rounded-2xl text-center">
+                                <i data-lucide="users" class="w-6 h-6 mx-auto text-brand-500 mb-2"></i>
+                                <span class="text-xs font-semibold text-slate-700 dark:text-slate-300">Group
+                                    Collaboration</span>
+                            </div>
+                            <div
+                                class="p-4 bg-slate-50 dark:bg-darkbg/60 border border-slate-200 dark:border-darkborder/60 rounded-2xl text-center">
+                                <i data-lucide="search" class="w-6 h-6 mx-auto text-brand-500 mb-2"></i>
+                                <span class="text-xs font-semibold text-slate-700 dark:text-slate-300">Problem
+                                    Solving</span>
+                            </div>
+                            <div
+                                class="p-4 bg-slate-50 dark:bg-darkbg/60 border border-slate-200 dark:border-darkborder/60 rounded-2xl text-center">
+                                <i data-lucide="file-text" class="w-6 h-6 mx-auto text-brand-500 mb-2"></i>
+                                <span class="text-xs font-semibold text-slate-700 dark:text-slate-300">Lab
+                                    Reporting</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 p-4 bg-brand-50 rounded-2xl border border-brand-100">
+                        <p class="text-xs text-brand-700 font-medium leading-relaxed">
+                            💡 <strong>Goal:</strong> Consistently submitting all computer laboratory requirements on
+                            time while building strong foundational technical skills.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= ACTIVITIES ================= -->
+    <section id="activities"
+        class="py-20 bg-slate-100/60 dark:bg-darkcard/40 border-y border-slate-200 dark:border-darkborder">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-4 mb-10">
+                <div>
+                    <p class="text-xs font-semibold text-brand-500 uppercase tracking-widest">Laboratory Work</p>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white mt-1">Comlab
+                        Activities</h2>
+                </div>
+                <button onclick="openAddModal()"
+                    class="px-5 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-semibold text-sm transition-all shadow-md shadow-brand-500/20 flex items-center gap-2">
+                    <i data-lucide="plus" class="w-4 h-4"></i> Add Activity
+                </button>
+            </div>
+
+            <!-- Term Selector Tabs -->
+            <div class="flex items-center justify-center gap-3 mb-10">
+                <button id="midtermBtn" onclick="switchTerm('midterm')"
+                    class="px-7 py-3 rounded-xl font-semibold text-sm transition-all duration-200 active-tab shadow-md">
+                    Midterm Term
+                </button>
+                <button id="finalsBtn" onclick="switchTerm('finals')"
+                    class="px-7 py-3 rounded-xl font-semibold text-sm bg-white dark:bg-darkcard text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-darkborder hover:border-brand-500 transition-all duration-200">
+                    Finals Term
+                </button>
+            </div>
+
+            <!-- Activities Grid Container -->
+            <div id="activitiesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Rendered via JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= CONTACT / STUDENT INFO ================= -->
+    <section id="contact" class="py-20">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <p class="text-xs font-semibold text-brand-500 uppercase tracking-widest">Communication</p>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white mt-1">Get In Touch</h2>
+            </div>
+
+            <div
+                class="max-w-2xl mx-auto bg-white dark:bg-darkcard border border-slate-200 dark:border-darkborder rounded-3xl p-8 sm:p-10 shadow-sm">
+                <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-8 flex items-center gap-3">
+                    <div class="p-2.5 rounded-xl bg-brand-50 text-brand-500">
+                        <i data-lucide="contact" class="w-6 h-6"></i>
+                    </div>
+                    <span>Student Information</span>
+                </h3>
+
+                <div class="space-y-6">
+                    <div
+                        class="flex items-center gap-4 p-5 rounded-2xl bg-slate-50 dark:bg-darkbg/60 border border-slate-100 dark:border-darkborder/50">
+                        <div
+                            class="w-12 h-12 rounded-xl bg-brand-50 text-brand-500 flex items-center justify-center flex-shrink-0">
+                            <i data-lucide="mail" class="w-6 h-6"></i>
+                        </div>
+                        <div>
+                            <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Student Email</p>
+                            <a href="mailto:alex.santos@student.edu.ph"
+                                class="text-slate-900 dark:text-white font-semibold text-base hover:text-brand-500 transition-colors">
+                                marinmarkjoshuaflor.pdm@gmail.com
+                            </a>
+                        </div>
+                    </div>
+
+                    <div
+                        class="flex items-center gap-4 p-5 rounded-2xl bg-slate-50 dark:bg-darkbg/60 border border-slate-100 dark:border-darkborder/50">
+                        <div
+                            class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-500 flex items-center justify-center flex-shrink-0">
+                            <i data-lucide="phone" class="w-6 h-6"></i>
+                        </div>
+                        <div>
+                            <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Contact Number</p>
+                            <p class="text-slate-900 dark:text-white font-semibold text-base">+63 912 345 6789</p>
+                        </div>
+                    </div>
+
+                    <!-- Social Networks with SVG Logos -->
+                    <div class="pt-4">
+                        <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-4">Social Networks
+                        </p>
+                        <div class="flex items-center gap-3">
+                            <a href="#" title="TikTok"
+                                class="w-12 h-12 rounded-2xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-600 dark:text-slate-300 hover:bg-brand-600 hover:text-white transition-all shadow-sm">
+                                <svg class="w-5 h-5 fill-current" viewBox="0 0 448 512">
+                                    <path
+                                        d="M448 209.91a210.06 210.06 0 0 1-122.77-39.25V349.38A162.55 162.55 0 1 1 185 188.31V258.2a93.21 93.21 0 1 0 57.57 86.63V0h68.78a141.22 141.22 0 0 0 88.58 63.85V132A141.2 141.2 0 0 0 448 209.91z" />
+                                </svg>
+                            </a>
+                            <a href="#" title="Facebook"
+                                class="w-12 h-12 rounded-2xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-600 dark:text-slate-300 hover:bg-brand-600 hover:text-white transition-all shadow-sm">
+                                <svg class="w-5 h-5 fill-current" viewBox="0 0 320 512">
+                                    <path
+                                        d="M80 299.3V512h116V299.3h86.5l18-97.8H196V136.9c0-26.2 12.9-51.7 53.9-51.7H293V1h-63.2C151.2 1 103 48.2 103 128.7v72.8H32v97.8h71z" />
+                                </svg>
+                            </a>
+                            <a href="#" title="Instagram"
+                                class="w-12 h-12 rounded-2xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-600 dark:text-slate-300 hover:bg-brand-600 hover:text-white transition-all shadow-sm">
+                                <svg class="w-5 h-5 fill-current" viewBox="0 0 448 512">
+                                    <path
+                                        d="M224.1 141c-45.6 0-82.6 37-82.6 82.6s37 82.6 82.6 82.6 82.6-37 82.6-82.6-37-82.6-82.6-82.6zm0 136.6c-29.8 0-54-24.2-54-54s24.2-54 54-54 54 24.2 54 54-24.2 54-54 54zm124.7-142.3c0 10.7-8.7 19.3-19.3 19.3s-19.3-8.7-19.3-19.3c0-10.7 8.7-19.3 19.3-19.3s19.3 8.7 19.3 19.3zm84.2 21.8c-2.9-61.7-17-116.3-62-161.3S270.8 2.9 209.1 0C147.4 2.9 92.8 17 47.8 62S2.9 161.3 0 223c2.9 61.7 17 116.3 62 161.3s98.3 59.1 160 62c61.7-2.9 116.3-17 161.3-62s59.1-98.3 62-160c2.9-61.7 2.9-122.9-1.3-146.3zm-48.6 288c-26.6 26.6-64 41.7-135.6 41.7s-109-15.1-135.6-41.7S8.7 383.6 8.7 312s15.1-109 41.7-135.6 64-41.7 135.6-41.7 109 15.1 135.6 41.7 41.7 64 41.7 135.6-15.1 109-41.7 135.6z" />
+                                </svg>
+                            </a>
+                            <a href="#" title="Telegram"
+                                class="w-12 h-12 rounded-2xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-600 dark:text-slate-300 hover:bg-brand-600 hover:text-white transition-all shadow-sm">
+                                <svg class="w-5 h-5 fill-current" viewBox="0 0 496 512">
+                                    <path
+                                        d="M248 8C111 8 0 119 0 256s111 248 248 248 248-111 248-248S385 8 248 8zm121.8 169.9l-40.7 191.8c-3 13.6-11.1 16.9-22.4 10.5l-62-45.7-29.9 28.8c-3.3 3.3-6.1 6.1-12.5 6.1l4.4-63.1 114.9-103.8c5-4.4-1.1-6.9-7.7-2.5l-142 89.4-61.2-19.1c-13.3-4.2-13.6-13.3 2.8-19.7l239.1-92.2c11.1-4 20.8 2.7 17.2 19.5z" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= FOOTER ================= -->
+    <footer
+        class="mt-auto py-8 border-t border-slate-200 dark:border-darkborder bg-white dark:bg-darkbg transition-colors">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <p class="text-xs text-slate-500 dark:text-slate-400">
+                &copy; 2026 Student Academic Portfolio. Computer Laboratory Coursework Showcase.
+            </p>
+        </div>
+    </footer>
+
+    <!-- ================= VIEW ACTIVITY MODAL ================= -->
+    <div id="activityModal"
+        class="fixed inset-0 z-50 modal-backdrop hidden flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
+        <div
+            class="bg-white dark:bg-darkcard border border-slate-200 dark:border-darkborder rounded-3xl max-w-3xl w-full p-6 sm:p-8 shadow-2xl space-y-6 my-auto max-h-[90vh] overflow-y-auto">
+            <div class="flex items-start justify-between border-b border-slate-100 dark:border-darkborder pb-4">
+                <div>
+                    <span id="modalTermBadge"
+                        class="text-xs font-semibold text-brand-500 uppercase tracking-wider px-2.5 py-1 rounded-full bg-brand-50">Midterm</span>
+                    <h3 id="modalTitle" class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mt-2">
+                        Activity Title</h3>
+                </div>
+                <button onclick="closeModal()"
+                    class="text-slate-400 hover:text-slate-600 dark:hover:text-white p-2 rounded-xl bg-slate-100 dark:bg-slate-800 transition-colors">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+
+            <div
+                class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm text-slate-600 dark:text-slate-300 bg-slate-50 dark:bg-darkbg/50 p-4 rounded-2xl border border-slate-100 dark:border-darkborder/60">
+                <div><strong class="text-slate-900 dark:text-white">Date Submitted:</strong> <span
+                        id="modalDate">--</span></div>
+                <div><strong class="text-slate-900 dark:text-white">Tools Used:</strong> <span id="modalTools">--</span>
+                </div>
+            </div>
+
+            <div>
+                <div class="flex items-center gap-2 border-b border-slate-200 dark:border-darkborder pb-3">
+                    <button id="tabPreviewBtn" onclick="switchModalTab('preview')"
+                        class="px-4 py-2 rounded-xl text-xs font-semibold bg-brand-600 text-white transition-all shadow-sm">
+                        📷 Screenshot / Output Preview
+                    </button>
+                    <button id="tabCodeBtn" onclick="switchModalTab('code')"
+                        class="px-4 py-2 rounded-xl text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 transition-all">
+                        💻 Source Code
+                    </button>
+                </div>
+
+                <div id="modalPreviewContent" class="mt-4">
+                    <div
+                        class="rounded-2xl overflow-hidden border border-slate-200 dark:border-darkborder bg-slate-900 flex flex-col items-center justify-center p-2 min-h-[260px] relative group">
+                        <img id="modalImg" src="" alt="Activity Output Preview"
+                            class="w-full h-auto rounded-xl max-h-[320px] object-cover shadow-lg">
+                        <div
+                            class="absolute bottom-3 right-3 bg-black/70 backdrop-blur-md px-3 py-1 rounded-lg text-white text-[11px] font-medium">
+                            Output Screenshot
+                        </div>
+                    </div>
+                </div>
+
+
+                <div id="modalCodeContent" class="mt-4 hidden">
+                    <div
+                        class="rounded-2xl border border-slate-200 dark:border-darkborder bg-[#090d16] p-4 font-mono text-xs text-brand-500">
+                        <pre
+                            class="max-h-[300px] overflow-auto whitespace-pre"><code id="modalCodeSnippet">--</code></pre>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="pt-4 border-t border-slate-100 dark:border-darkborder flex justify-end">
+                <button onclick="closeModal()"
+                    class="px-6 py-2.5 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-200 text-sm font-medium hover:bg-slate-300 dark:hover:bg-slate-700 transition-colors">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= ADD ACTIVITY MODAL ================= -->
+    <div id="addActivityModal"
+        class="fixed inset-0 z-50 modal-backdrop hidden flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
+        <div
+            class="bg-white dark:bg-darkcard border border-slate-200 dark:border-darkborder rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl space-y-5 my-auto max-h-[90vh] overflow-y-auto">
+
+           
+
+            <form id="addActivityForm" onsubmit="handleAddNewActivity(event)" class="space-y-4 text-sm">
+                <div>
+                    <label class="block font-semibold text-slate-700 dark:text-slate-300 mb-1">Select Term</label>
+                    <select id="newTerm"
+                        class="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-darkbg border border-slate-200 dark:border-darkborder text-slate-900 dark:text-white focus:outline-none focus:border-brand-500">
+                        <option value="midterm">Midterm Term</option>
+                        <option value="finals">Finals Term</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block font-semibold text-slate-700 dark:text-slate-300 mb-1">Activity Title</label>
+                    <input type="text" id="newTitle" required placeholder="e.g. Activity 8: Basic JavaScript"
+                        class="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-darkbg border border-slate-200 dark:border-darkborder text-slate-900 dark:text-white focus:outline-none focus:border-brand-500">
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block font-semibold text-slate-700 dark:text-slate-300 mb-1">Date</label>
+                        <input type="text" id="newDate" required placeholder="e.g. Jun 01, 2026"
+                            class="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-darkbg border border-slate-200 dark:border-darkborder text-slate-900 dark:text-white focus:outline-none focus:border-brand-500">
+                    </div>
+                    <div>
+                        <label class="block font-semibold text-slate-700 dark:text-slate-300 mb-1">Tools Used</label>
+                        <input type="text" id="newTools" required placeholder="e.g. HTML, CSS, JS"
+                            class="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-darkbg border border-slate-200 dark:border-darkborder text-slate-900 dark:text-white focus:outline-none focus:border-brand-500">
+                    </div>
+                </div>
+
+                <!-- Choose File Input -->
+                <div>
+                    <label class="block font-semibold text-slate-700 dark:text-slate-300 mb-1">Upload Screenshot
+                        Image</label>
+                    <input type="file" id="newImgFile" accept="image/*" required
+                        class="w-full text-xs text-slate-500 dark:text-slate-400 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-brand-500 file:text-white hover:file:bg-brand-600 cursor-pointer bg-slate-50 dark:bg-darkbg rounded-xl border border-slate-200 dark:border-darkborder p-1">
+                </div>
+
+
+                <div>
+                    <label class="block font-semibold text-slate-700 dark:text-slate-300 mb-1">
+                        Source Code
+                    </label>
+
+                    <textarea id="newCode" required rows="5" placeholder="Paste your code snippet here..."
+                        style="height: 160px; overflow-y: auto; overflow-x: auto; resize: none;"
+                        class="block w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-darkbg border border-slate-200 dark:border-darkborder font-mono text-xs text-slate-900 dark:text-white focus:outline-none focus:border-brand-500"></textarea>
+                </div>
+
+
+                <div class="pt-2 flex justify-end gap-3">
+                    <button type="button" onclick="closeAddModal()"
+                        class="px-5 py-2.5 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium hover:bg-slate-300">
+                        Cancel
+                    </button>
+                    <button type="submit"
+                        class="px-6 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-semibold shadow-md shadow-brand-500/20">
+                        Save Activity
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- External JavaScript -->
+    <script src="script.js"></script>
+</body>
+
+</html>

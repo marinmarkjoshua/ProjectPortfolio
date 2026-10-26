@@ -1,0 +1,144 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+    --brand-50: #eff6ff;
+    --brand-100: #dbeafe;
+    --brand-500: #3b82f6;
+    --brand-600: #2563eb;
+    --brand-700: #1d4ed8;
+}
+
+html.dark {
+    --brand-50: #fdf2f8;
+    --brand-100: #fce7f3;
+    --brand-500: #ec4899;
+    --brand-600: #db2777;
+    --brand-700: #be185d;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    scroll-behavior: smooth;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #0b1120;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #23304d;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--brand-500);
+}
+
+.active-tab {
+    background: linear-gradient(135deg, var(--brand-600), var(--brand-700));
+    color: #ffffff;
+    box-shadow: 0 4px 14px rgba(37, 99, 235, 0.25);
+}
+
+.modal-backdrop {
+    background-color: rgba(11, 17, 32, 0.85);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+@keyframes glowing {
+    0% {
+        opacity: 0.6;
+        filter: blur(8px);
+    }
+
+    50% {
+        opacity: 1;
+        filter: blur(14px);
+    }
+
+    100% {
+        opacity: 0.6;
+        filter: blur(8px);
+    }
+}
+
+.glowing-box {
+    animation: glowing 3s ease-in-out infinite;
+}
+
+.nav-link {
+    color: #64748b;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.dark .nav-link {
+    color: #cbd5e1;
+}
+
+.nav-link:hover {
+    color: var(--brand-500);
+}
+
+.activity-card {
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.activity-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px -10px rgba(59, 130, 246, 0.15);
+    border-color: var(--brand-500);
+}
+
+
+
+
+
+
+#mouse-trail {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 999999;
+}
+
+
+
+/* Scroll inside Source Code textarea */
+#newCode {
+    display: block;
+    width: 100%;
+    height: 160px;
+    max-height: 160px;
+    overflow-y: scroll !important;
+    overflow-x: auto !important;
+    resize: none;
+    box-sizing: border-box;
+}s
+
+/* Source Code scrollbar */
+#newCode::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+#newCode::-webkit-scrollbar-track {
+    background: #0b1120;
+    border-radius: 4px;
+}
+
+#newCode::-webkit-scrollbar-thumb {
+    background: #23304d;
+    border-radius: 4px;
+}
+
+#newCode::-webkit-scrollbar-thumb:hover {
+    background: var(--brand-500);
+}
